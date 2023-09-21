@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const numeroNivel = document.getElementById('numeroNivel'); // numero do nível
-  const nivelProgress = document.getElementById('nivel'); // barra de nível
+  const numeroNivel = document.getElementById('numeroNivel');
+  const nivelProgress = document.getElementById('nivel');
   const vidaProgress = document.getElementById('vida');
   const energiaProgress = document.getElementById('energia');
   const felicidadeProgress = document.getElementById('felicidade');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dormirButton = document.getElementById('dormir');
   const brincarButton = document.getElementById('brincar');
   const passearButton = document.getElementById('passear');
-  const caixaNotificacao = document.getElementById('notificacao'); // Para o Cone
+  const caixaNotificacao = document.getElementById('notificacao');
 
   let nivel = 0;
   let vida = 100;
@@ -43,8 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nivel === 100) {
       numeroNivel.textContent = parseInt(numeroNivel.textContent) + 1;
       nivel = 0;
-    } // passa de nível e reseta a barra
+    }
   };
+
+  let botaoHabilitado = true;
 
   function habilitaBotao() {
     let botaoHabilitado = true;
@@ -60,22 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (numeroAleatorio < chanceDoenca) {
       return "Contraiu uma doença";
     } else if (numeroAleatorio < chanceDoenca + chanceRecompensa) {
-      return "Encontrou recompensa"
+      return "Encontrou uma recompensa"
     } else { return "Nenhum evento" };
   };
 
   setInterval(() => {
-    energia -= 5,
-      felicidade -= 5,
-      fome += 5;
+    energia -= 5;
+    felicidade -= 5;
+    fome += 5;
 
-    if (fome >= 100) {
-      felicidade -= 30,
-        energia -= 10;
+    if (fome === 100 || fome >= 100) {
+      felicidade -= 30;
+      energia -= 10;
       vida -= 10;
     };
 
-    if (energia <= 0) vida -= 5;
+    if (energia === 0 || energia <= 0) vida -= 5;
 
     updateUI();
   }, 60000);
@@ -88,65 +90,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   bifeButton.addEventListener('click', () => {
     if (fome > 0) {
-      vida += 15,
-        fome -= 20,
-        nivel += 2;
-    } else { console.log('Cheio demais...') }; // BUG
+      vida += 15;
+      fome -= 20;
+      nivel += 2;
+    } else { console.log('Cheio demais...') };
 
     updateUI();
   });
 
   bolachaButton.addEventListener('click', () => {
     if (fome > 0) {
-      vida += 5,
-        fome -= 10,
-        nivel += 1;
-    } else { console.log('Cheio demais...') }; // BUG
-
+      vida += 5;
+      fome -= 10;
+      nivel += 1;
+    } else { console.log('Cheio demais...') };
     updateUI();
   });
 
   dormirButton.addEventListener('click', () => {
-    if (energia < 100) {
-      energia += 30,
-        fome += 5;
+    if (energia < 90) {
+      energia += 30;
+      fome += 5;
       nivel += 2;
-    } else { console.log('Sem sono...') }; // BUG
+    } else { console.log('Sem sono...') };
 
     updateUI();
   });
 
   brincarButton.addEventListener('click', () => {
-    if (energia >= 10) {
-      energia -= 10,
-        felicidade += 10,
-        fome += 10,
-        nivel += 3;
-    } else { console.log(energia); }; // BUG
-
-    if (fome < 90) {
-      energia -= 10,
-        felicidade += 10,
-        fome += 10,
-        nivel += 3;
-    } else { console.log('Muita fome para brincar...') }; // BUG
+    if (fome < 90 && energia >= 10) {
+      energia -= 10;
+      felicidade += 10;
+      fome += 10;
+      nivel += 3;
+    } else if (fome >= 90) {
+      console.log('Muita fome...');
+    } else if (energia < 10) {
+      console.log('Sem energia...');
+    }
 
     updateUI();
   });
 
+
+
   passearButton.addEventListener('click', () => {
-    if (botaoHabilitado = true) {
-      felicidade += 50,
-        fome += 20,
-        nivel += 20,
-        energia -= 20;
+    if (botaoHabilitado === true) {
+      felicidade += 50;
+      fome += 20;
+      nivel += 20;
+      energia -= 20;
 
       passearButton.disabled = true;
+      botaoHabilitado = false;
 
       setTimeout(() => {
         habilitaBotao();
-      }, 1200);
-    } else if (energia < 20) { console.log(energia) } // BUG
+      }, 120000);
+    } else if (energia < 20) { console.log('Sem energia...') }
 
     const resultadoEvento = eventoAleatorio();
     console.log(resultadoEvento);
