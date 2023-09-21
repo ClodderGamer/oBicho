@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const bolachaButton = document.getElementById('bolacha');
   const dormirButton = document.getElementById('dormir');
   const brincarButton = document.getElementById('brincar');
+  const passearButton = document.getElementById('passear');
   const caixaNotificacao = document.getElementById('notificacao'); // Para o Cone
 
   let nivel = 0;
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let energia = 100;
   let felicidade = 100;
   let fome = 0;
+
 
   function updateUI() {
     nivel = Math.min(Math.max(nivel, 0), 100);
@@ -42,6 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
       numeroNivel.textContent = parseInt(numeroNivel.textContent) + 1;
       nivel = 0;
     } // passa de nível e reseta a barra
+  };
+
+  function habilitaBotao() {
+    let botaoHabilitado = true;
+    passearButton.disabled = false;
+  };
+
+  function eventoAleatorio() {
+    const numeroAleatorio = Math.random();
+
+    const chanceDoenca = 0.1; // 10%
+    const chanceRecompensa = 0.2; // 20%
+
+    if (numeroAleatorio < chanceDoenca) {
+      return "Contraiu uma doença";
+    } else if (numeroAleatorio < chanceDoenca + chanceRecompensa) {
+      return "Encontrou recompensa"
+    } else { return "Nenhum evento" };
   };
 
   setInterval(() => {
@@ -71,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       vida += 15,
         fome -= 20,
         nivel += 2;
-    } else { console.log('Cheio demais...') }; // verifica fome antes de comer
+    } else { console.log('Cheio demais...') }; // BUG
 
     updateUI();
   });
@@ -81,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       vida += 5,
         fome -= 10,
         nivel += 1;
-    } else { console.log('Cheio demais...') }; // verifica fome antes de comer
+    } else { console.log('Cheio demais...') }; // BUG
 
     updateUI();
   });
@@ -91,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       energia += 30,
         fome += 5;
       nivel += 2;
-    } else { console.log('Sem sono...') }; // verifica eneergia antes de dormir
+    } else { console.log('Sem sono...') }; // BUG
 
     updateUI();
   });
@@ -102,14 +122,34 @@ document.addEventListener('DOMContentLoaded', () => {
         felicidade += 10,
         fome += 10,
         nivel += 3;
-    } else { console.log('Sem energia suficiente ;-;'); }; // verifica energia antes de brincar
+    } else { console.log(energia); }; // BUG
 
     if (fome < 90) {
       energia -= 10,
-      felicidade += 10,
-      fome += 10,
-      nivel += 3;
-    } else { console.log('Muita fome para brincar...') }; // verifica fome antes de brincar
+        felicidade += 10,
+        fome += 10,
+        nivel += 3;
+    } else { console.log('Muita fome para brincar...') }; // BUG
+
+    updateUI();
+  });
+
+  passearButton.addEventListener('click', () => {
+    if (botaoHabilitado = true) {
+      felicidade += 50,
+        fome += 20,
+        nivel += 20,
+        energia -= 20;
+
+      passearButton.disabled = true;
+
+      setTimeout(() => {
+        habilitaBotao();
+      }, 1200);
+    } else if (energia < 20) { console.log(energia) } // BUG
+
+    const resultadoEvento = eventoAleatorio();
+    console.log(resultadoEvento);
 
     updateUI();
   });

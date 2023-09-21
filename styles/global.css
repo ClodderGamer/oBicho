@@ -6,6 +6,10 @@
     margin-right: 5px;
 }
 
+.esconde {
+    display: none;
+}
+
 #cabecalho {
     display: inline-block;
 }
