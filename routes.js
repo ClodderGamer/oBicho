@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const iniciarButton = document.getElementById('iniciar');
   const returnHomeButton = document.getElementById('returnHome');
 
-  if (iniciarButton) {
-    console.log('a'),
-    
+  if (iniciarButton) {    
     iniciarButton.addEventListener('click', () => {
       window.location.href = 'jogo.html';
     });
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (returnHomeButton) {
     returnHomeButton.addEventListener('click', () => {
-      console.log('botão de retorno clicado');
       window.location.href = 'index.html';
     });
   }

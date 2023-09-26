@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const numeroNivel = document.getElementById('numeroNivel');
+  const dinheiroTela = document.getElementById('dinheiro');
   const nivelProgress = document.getElementById('nivel');
   const vidaProgress = document.getElementById('vida');
   const energiaProgress = document.getElementById('energia');
@@ -12,14 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const dormirButton = document.getElementById('dormir');
   const brincarButton = document.getElementById('brincar');
   const passearButton = document.getElementById('passear');
-  const caixaNotificacao = document.getElementById('notificacao');
+  const caixaNotificacao = document.getElementById('notificacao'); //
 
   let nivel = 0;
   let vida = 100;
   let energia = 100;
   let felicidade = 100;
   let fome = 0;
-
 
   function updateUI() {
     nivel = Math.min(Math.max(nivel, 0), 100);
@@ -64,6 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (numeroAleatorio < chanceDoenca + chanceRecompensa) {
       return "Encontrou uma recompensa"
     } else { return "Nenhum evento" };
+  };
+
+  let valorFloat = parseFloat(dinheiroTela.textContent);
+
+  function atualizarSaldo (valor) {
+    valorFloat = novoValor;
+    dinheiroTela.textContent = `R$ ${valorFloat.toFixed(2)}`;
+
+    updateUI()
   };
 
   setInterval(() => {
@@ -151,6 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resultadoEvento = eventoAleatorio();
     console.log(resultadoEvento);
+
+    atualizarSaldo(4.50);
 
     updateUI();
   });

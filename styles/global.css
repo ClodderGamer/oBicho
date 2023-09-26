@@ -4,82 +4,99 @@
     overflow: hidden;
     margin-left: 5px;
     margin-right: 5px;
-}
-
-.esconde {
+  }
+  
+  .esconde {
     display: none;
-}
-
-#cabecalho {
+  }
+  
+  #cabecalho {
     display: inline-block;
-}
-
-#numeroNivel {
+  }
+  
+  #divdinheiro {
+    position: relative;
+    margin-bottom: 3px;
+  }
+  
+  #divdinheiro p {
+    position: absolute;
+    top: -13px;
+    left: 25px;
+  }
+  
+  #moedaimg {
+    height: 20px;
+    width: 20px;
+  }
+  
+  #numeroNivel {
     margin: 0px;
-}
-
-#fundo {
+  }
+  
+  #fundo {
     width: 100vw;
     height: 200px;
     background-color: green;
     position: relative;
     overflow: hidden;
-}
-
-#alimentar {
+  }
+  
+  #alimentar {
     margin-bottom: 2px;
-}
-
-#listaOpcoes {
+  }
+  
+  #listaOpcoes {
     display: none;
     padding-block: 1px;
     padding-inline: 6px;
     border-width: 2px;
     border-style: groove;
     width: 110px;
-}
-
-#listaComidas {
+  }
+  
+  #listaComidas {
     list-style: none;
     padding: 0;
     width: 100px;
-}
-
-.botaoLista {
+  }
+  
+  .botaoLista {
     display: block;
     margin-bottom: 10px;
-}
-
-.botaoComida {
+  }
+  
+  .botaoComida {
     width: 100%;
-}
-
-#bife {
+  }
+  
+  #bife {
     margin-bottom: 2px;
-}
-
-#dino {
+  }
+  
+  #dino {
     flex-flow: row wrap;
     margin: 0;
     padding: 0;
     height: 200px;
     width: 200px;
-}
-
-.dino-animation {
+  }
+  
+  .dino-animation {
     flex-flow: row;
     margin: 0;
     padding: 0;
     width: 100vw;
     animation: go-back linear 6s infinite alternate;
-}
-
-@keyframes go-back {
+  }
+  
+  @keyframes go-back {
     0% {
-        transform: translateX(-3vw);
+      transform: translateX(-3vw);
     }
-
+  
     100% {
-        transform: translateX(90vw);
+      transform: translateX(90vw);
     }
-}
+  }
+  
