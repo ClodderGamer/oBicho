@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dormirButton = document.getElementById('dormir');
   const brincarButton = document.getElementById('brincar');
   const passearButton = document.getElementById('passear');
-  const caixaNotificacao = document.getElementById('notificacao'); //
+  const caixaNotificacao = document.getElementById('notificacao');
 
   let nivel = 0;
   let vida = 100;
