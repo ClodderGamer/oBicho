@@ -1,0 +1,25 @@
+Brainstorming JBicho:
+
+Sons e Música: Criaremos uma música para adicionar ao jogo;
+
+Gráficos e animações melhoradas: expressões para o bixinho...
+
+Interações mais Complexas: ~Levá-lo para passear~ levá-lo ao médico virtual para verificar sua saúde...
+
+Minigames; (21)
+
+Barra de Progresso de Evolução: Quando ele evolui, pode mudar de aparência;
+
+Eventos Aleatórios: Periodicamente o bichinho pode encontrar tesouros durante uma caminhada que aumentam sua felicidade ou pode ficar doente e precisar de cuidados especiais;
+
+Personalizações com roupas, acessórios e decorações para a área onde ele vive;
+
+Feedback Visual e Mensagens quando o jogador executa ações. Por exemplo, quando o jogador alimenta o bichinho, exiba uma mensagem "Estou cheio!";
+
+Conquistas e Recompensas para incentivar os jogadores a cuidarem bem de seu bichinho virtual e alcançarem metas específicas;
+
+Objetivos para upar level mais rápido;
+
+Multiplayer;
+
+Upgrade de jogo TopDown (ou plataforma) com interações com outros players (Roubando a ideia do Habbo);

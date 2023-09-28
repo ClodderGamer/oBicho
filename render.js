@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const numeroNivel = document.getElementById('numeroNivel');
-  const dinheiroTela = document.getElementById('dinheiro');
+  const valorDinheiro = document.getElementById('dinheiro');
   const nivelProgress = document.getElementById('nivel');
   const vidaProgress = document.getElementById('vida');
   const energiaProgress = document.getElementById('energia');
@@ -59,19 +59,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const chanceDoenca = 0.1; // 10%
     const chanceRecompensa = 0.2; // 20%
 
-    if (numeroAleatorio < chanceDoenca) {
-      return "Contraiu uma doença";
-    } else if (numeroAleatorio < chanceDoenca + chanceRecompensa) {
-      return "Encontrou uma recompensa"
-    } else { return "Nenhum evento" };
+    min = 0.5;
+    max = 10.1;
+    const valorRecompensa = (min, max) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    switch (true) {
+      case numeroAleatorio < chanceDoenca:
+          return("Contraiu uma doença");
+          break;
+      case numeroAleatorio < chanceDoenca + chanceRecompensa:
+          return(`Enquanto passeava, encontrou R$ ${valorRecompensa(min, max)}`),
+          atualizarSaldo(valorRecompensa(min, max).toFixed(2));
+          break;
+      default:
+          return("Nenhum evento");
+          break;
+  };
   };
 
-  let valorFloat = parseFloat(dinheiroTela.textContent);
+  let saldo = parseFloat(valorDinheiro.textContent);
 
-  function atualizarSaldo (valor) {
-    valorFloat = novoValor;
-    dinheiroTela.textContent = `R$ ${valorFloat.toFixed(2)}`;
+  function atualizarSaldo(valor) {
+    saldo = parseFloat(saldo) + valor;
 
+    valorDinheiro.textContent = `R$ ${saldo}`
     updateUI()
   };
 
@@ -123,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nivel += 2;
     } else { console.log('Sem sono...') };
 
+    atualizarSaldo(4.10); //teste
     updateUI();
   });
 
@@ -155,13 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         habilitaBotao();
-      }, 120000);
+      }, 120); //
     } else if (energia < 20) { console.log('Sem energia...') }
 
     const resultadoEvento = eventoAleatorio();
     console.log(resultadoEvento);
-
-    atualizarSaldo(4.50);
 
     updateUI();
   });
