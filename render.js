@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     valorDinheiro.textContent = `R$ ${saldo}`
     updateUI()
-  };
+  }; //Bug
 
   setInterval(() => {
     energia -= 5;
